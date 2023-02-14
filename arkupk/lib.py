@@ -1,13 +1,13 @@
 import httpx
 import zipfile
 import hashlib
-import unitypack
+#import unitypack
 
 
 from io import BytesIO
 from tqdm import tqdm
 from pathlib import Path
-from unitypack.utils import extract_audioclip_samples
+#from unitypack.utils import extract_audioclip_samples
 
 from .model import Version, MetaData, UpdateList
 
@@ -63,20 +63,20 @@ def download(
             tqdm.write(f"{ab}")
             break
 
-    if unpuck:
-        for ab in tqdm(list(download_path.glob("**/*.ab")), desc="Unpacking"):
-            if ab.is_file():
-                unpuck_file(ab, base_path.joinpath("unpacked"))
+    #if unpuck:
+    #    for ab in tqdm(list(download_path.glob("**/*.ab")), desc="Unpacking"):
+    #        if ab.is_file():
+    #            unpuck_file(ab, base_path.joinpath("unpacked"))
 
 
-def unpuck_file(file: Path, destination_folder: Path):
-    destination_folder = destination_folder.joinpath(*file.parts[2:-1], file.stem)
-    with file.open("rb") as f:
-        bundle = unitypack.load(f)
-        for asset in bundle.assets:
-            for id, object in asset.objects.items():
-                if object.type == "AudioClip":
-                    destination_folder.mkdir(parents=True, exist_ok=True)
-                    for filename, sample in extract_audioclip_samples(object.read()).items():
-                        output_path = destination_folder.joinpath(filename)
-                        output_path.write_bytes(sample)
+#def unpuck_file(file: Path, destination_folder: Path):
+#    destination_folder = destination_folder.joinpath(*file.parts[2:-1], file.stem)
+#    with file.open("rb") as f:
+#        bundle = unitypack.load(f)
+#        for asset in bundle.assets:
+#            for id, object in asset.objects.items():
+#                if object.type == "AudioClip":
+#                    destination_folder.mkdir(parents=True, exist_ok=True)
+#                    for filename, sample in extract_audioclip_samples(object.read()).items():
+#                        output_path = destination_folder.joinpath(filename)
+#                        output_path.write_bytes(sample)
