@@ -80,5 +80,3 @@ def unpuck_file(file: Path, destination_folder: Path):
                     for filename, sample in extract_audioclip_samples(object.read()).items():
                         output_path = destination_folder.joinpath(filename)
                         output_path.write_bytes(sample)
-                else:
-                    tqdm.write(f"Unknown type: {object.type} {object}")
