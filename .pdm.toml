@@ -1,2 +1,2 @@
 [python]
-path = "/root/arkupk/.venv/bin/python"
+path = ".venv/bin/python"
